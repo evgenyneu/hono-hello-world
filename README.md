@@ -37,7 +37,7 @@ npm install --production
 Run with one node process:
 
 ```sh
-node build/index.js
+node index.js
 ```
 
 Run with clustering (utilize all CPU cores):
