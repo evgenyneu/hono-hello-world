@@ -51,22 +51,22 @@ node cluster.js
 ## Benchmarking
 
 
-### Before (after reboot)
+### After reboot
 
-* RAM usage:
-* CPU Load average (over 1 minute):
+* RAM usage: 327M
+* CPU Load average (over 1 minute): 0.06
 
 ### Server running idle
 
 * Single node process: `node build/index.js`:
 
-* RAM usage:
-* CPU Load average (over 1 minute):
+* RAM usage: 250M
+* CPU Load average (over 1 minute): 0.03
 
 Clustering (utilize all CPU cores): `node cluster.js`:
 
-* RAM usage:
-* CPU Load average (over 1 minute):
+* RAM usage: 350M
+* CPU Load average (over 1 minute): 0.05
 
 ### Stress test #1
 
@@ -76,46 +76,22 @@ With one node process: `node build/index.js`
 wrk -t10 -c1000 -d600s http://192.168.20.25:3000/
 ```
 
-* RAM usage:
-* CPU Load average (over 1 minutes):
+* RAM usage: 310M
+* CPU Load average (over 1 minutes): 1.14
 
 Results:
 
 ```
-
+  10 threads and 1000 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   113.73ms   18.28ms   2.00s    93.51%
+    Req/Sec     0.86k   183.78     2.56k    85.13%
+  5108140 requests in 10.00m, 1.22GB read
+  Socket errors: connect 0, read 0, write 0, timeout 837
+Requests/sec:   8512.51
+Transfer/sec:      2.09MB
 ```
 
-### Stress test #2 (two processes)
-
-Two Node.js processes: `node cluster.js`
-
-```sh
-wrk -t10 -c1000 -d600s http://192.168.20.25:3000/
-```
-
-* RAM usage:
-* CPU Load average (over 1 minute):
-
-Results:
-
-```
-```
-
-### Stress test #3 (four processes)
-
-Four Node.js processes: `node cluster.js`
-
-```sh
-wrk -t10 -c1000 -d600s http://192.168.20.25:3000/
-```
-
-* RAM usage:
-* CPU Load average (over 1 minute):
-
-Results:
-
-```
-```
 
 ### Stress test #4 (eight processes)
 
@@ -125,14 +101,23 @@ Eight Node.js processes: `node cluster.js`
 wrk -t10 -c1000 -d600s http://192.168.20.25:3000/
 ```
 
-* RAM usage:
-* CPU Load average (over 1 minute):
+* RAM usage: 682M
+* CPU Load average (over 1 minute): 9.19
 
 Results:
 
 ```
+wrk -t10 -c1000 -d600s http://192.168.20.25:3000/
+Running 10m test @ http://192.168.20.25:3000/
+  10 threads and 1000 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    53.70ms  152.84ms   2.00s    97.62%
+    Req/Sec     2.85k   536.14     4.82k    70.44%
+  17003588 requests in 10.00m, 4.07GB read
+  Socket errors: connect 0, read 0, write 0, timeout 26650
+Requests/sec:  28334.61
+Transfer/sec:      6.94MB
 ```
-
 
 
 ## Hardware
