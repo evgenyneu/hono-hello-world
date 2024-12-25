@@ -1,5 +1,9 @@
-const cluster = require('cluster');
-const numCPUs = require('os').cpus().length;
+import cluster from 'node:cluster';
+import { cpus } from 'node:os';
+import { fileURLToPath } from 'node:url';
+import { dirname } from 'node:path';
+
+const numCPUs = cpus().length;
 
 if (cluster.isPrimary) {
   console.log(`Primary ${process.pid} is running`);
@@ -13,5 +17,7 @@ if (cluster.isPrimary) {
     console.log(`worker ${worker.process.pid} died`);
   });
 } else {
-  require('./build/index.js');
+  const __dirname = dirname(fileURLToPath(import.meta.url));
+  const appPath = new URL('./build/index.js', import.meta.url);
+  import(appPath);
 }
