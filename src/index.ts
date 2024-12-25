@@ -2,9 +2,15 @@ import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 
 const app = new Hono()
+const filler = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+app.use('*', async (c, next) => {
+  await next()
+  c.header('x-filler', filler)
+})
 
 app.get('/', (c) => {
-  return c.text('Hello Hono!')
+  return c.text('Hello, World!')
 })
 
 const port = 3000
