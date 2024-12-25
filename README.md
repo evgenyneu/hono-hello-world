@@ -53,7 +53,7 @@ node cluster.js
 
 ### After reboot
 
-* RAM usage: 327M
+* RAM usage: 233M
 * CPU Load average (over 1 minute): 0.06
 
 ### Server running idle
