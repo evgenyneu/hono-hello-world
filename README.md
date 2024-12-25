@@ -92,8 +92,32 @@ Requests/sec:   8512.51
 Transfer/sec:      2.09MB
 ```
 
+### Stress test #2 (six processes)
 
-### Stress test #4 (eight processes)
+Six Node.js processes: `node cluster.js`
+
+```sh
+wrk -t10 -c1000 -d600s http://192.168.20.25:3000/
+```
+
+* RAM usage: 581M
+* CPU Load average (over 1 minute): 7.37
+
+Results:
+
+```
+  10 threads and 1000 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    40.50ms   30.44ms   1.98s    88.73%
+    Req/Sec     2.66k   381.37     5.16k    77.68%
+  15848237 requests in 10.00m, 3.79GB read
+  Socket errors: connect 0, read 0, write 0, timeout 521
+Requests/sec:  26409.34
+Transfer/sec:      6.47MB
+```
+
+
+### Stress test #3 (eight processes)
 
 Eight Node.js processes: `node cluster.js`
 
